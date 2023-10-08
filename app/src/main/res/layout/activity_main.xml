@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="weatherViewModel"
+            type="com.example.weatherapp.viewmodel.WeatherViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/office_weather_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/office_weather"
+        android:textSize="25dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:onClick="@{() -> weatherViewModel.getCurrentOfficeWeather()}"
+        />
+
+
+    <TextView
+        android:id="@+id/textview_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@{weatherViewModel.location}"
+        android:textSize="35dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintTop_toBottomOf="@id/office_weather_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/textview_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@{weatherViewModel.temp}"
+        android:textSize="40dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintTop_toBottomOf="@id/textview_location"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/weather_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        app:imageUrl="@{weatherViewModel.weatherIconUrl}"
+        app:layout_constraintTop_toBottomOf="@id/textview_location"
+        app:layout_constraintLeft_toRightOf="@id/textview_temperature"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textview_weather_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "@{weatherViewModel.weatherDescription}"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/weather_image"
+        app:layout_constraintLeft_toRightOf="@id/textview_temperature"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <EditText
+        android:id="@+id/edittext_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/location_hint"
+        android:textSize="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="60dp"
+        app:layout_constraintTop_toBottomOf="@id/textview_weather_description"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageButton
+        android:id="@+id/location_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintTop_toBottomOf="@id/textview_weather_description"
+        app:layout_constraintLeft_toRightOf="@id/edittext_location"
+        app:layout_constraintRight_toRightOf="parent"
+        android:src="@android:drawable/ic_menu_search"
+        android:onClick="@{() -> weatherViewModel.getSearchLocationWeather(edittextLocation.getText().toString())}"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
