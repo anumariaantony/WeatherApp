@@ -4,7 +4,7 @@ Weather Application
 This application shows the current weather of a location. 
 User can check weather of different locations.
 
-Language used : Kotlin.
+Language : Kotlin.
 
  Architecture : MVVM with Viewmodel and LiveData.
 
